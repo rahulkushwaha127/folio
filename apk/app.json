@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "MyFolio",
+    "slug": "myfolio",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#4A90E2"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.myfolio.app"
+    },
+    "android": {
+      "package": "com.myfolio.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#4A90E2"
+      }
+    }
+  }
+}
+

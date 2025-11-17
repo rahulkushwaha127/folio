@@ -24,7 +24,7 @@
                     }
                     ?>
                     
-                    <form method="post" action="contact-handler.php">
+                    <form method="post" action="/contact-handler">
                         <div class="row gtr-uniform">
                             <div class="col-6 col-12-xsmall">
                                 <input type="text" name="Name" id="demo-name" value="" placeholder="Name" required />

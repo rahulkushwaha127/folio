@@ -1,5 +1,5 @@
 <header id="header">
-    <a href="index.php" class="logo">Rahul Kushwaha</a>
+    <a href="/" class="logo">Rahul Kushwaha</a>
     <ul class="icons">
         <li><a target="_blank" href="https://github.com/rahulkushwaha127" class="icon brands fab fa-github"><span class="label">Github</span></a></li>
         <li><a target="_blank" href="https://www.linkedin.com/in/rahulkushwaha-dev/" class="icon brands fab fa-linkedin-in"><span class="label">LinkedIn</span></a></li>

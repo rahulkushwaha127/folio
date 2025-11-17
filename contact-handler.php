@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Redirect back to contact page with message
-$redirect_url = "contact.php";
+$redirect_url = "/contact";
 if (isset($success)) {
     $redirect_url .= "?success=1";
 } elseif (!empty($errors)) {

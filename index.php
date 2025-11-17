@@ -15,7 +15,7 @@
                         <p>Hello world!</p>
                         <p>This site is a showcase of a few websites, projects, and software tools I've built and/or worked on with development teams in the industry, and ways to contact me if you ever need help with anything.</p>
                         <ul class="actions">
-                            <li><a href="portfolio.php" class="button big">Check out my projects!</a></li>
+                            <li><a href="/portfolio" class="button big">Check out my projects!</a></li>
                         </ul>
                     </div>
                     <span class="image object">

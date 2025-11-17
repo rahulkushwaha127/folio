@@ -12,5 +12,5 @@
     <link rel="stylesheet" href="assets/css/main3860.css?v=1" />
     <link rel="stylesheet" href="assets/css/custom3860.css?v=1" />
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-    <script src="../www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>

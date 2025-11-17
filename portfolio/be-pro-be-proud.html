@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<!-- Mirrored from coltons-apps.tech/portfolio/be-pro-be-proud.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Jul 2024 17:33:08 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-179262461-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-179262461-1');
+</script>
+    <title>Colton's Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main3860.css?v=1" />
+    <link rel="stylesheet" href="../assets/css/custom3860.css?v=1" />
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.png">
+    <link  href="../../unpkg.com/nanogallery2%402.4.2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+    <a href="../index.html" class="logo">Colton Williams</a>
+    <ul class="icons">
+        <li><a target="_blank" href="https://github.com/clwilliams8" class="icon brands fab fa-github"><span class="label">Github</span></a></li>
+        <li><a target="_blank" href="https://www.facebook.com/colton.williams.509994/" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a target="_blank" href="https://www.linkedin.com/in/colton-williams7/" class="icon brands fab fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+    </ul>
+</header>
+
+                <!-- Content -->
+                <!-- Back button -->
+                <a href="../portfolio.html" class="button" style="margin-top: 35px;"><i class="fas fa-chevron-left"></i> Back to portfolio</a>
+                <section>
+                    <header class="main">
+                        <h1>Be Pro Be Proud</h1>
+                    </header>
+                    <span class="image main"><img src="../images/portfolio/be-pro-be-proud/responsive-showcase-mockup.png" alt="" /></span>
+
+                    <h2>About Be Pro Be Proud</h2>
+                    <p>The best time to get started on your better future is right now. There are thousands of opportunities right here in Arkansas for skilled professionals. And this is where you’ll find them. If you’ve got the talent and the ambition,
+                        Arkansas's top employers are looking for you. And, in many cases, you can even learn while you earn. Connecting with your profitable career has never been easier. You can read more on <a href="https://www.beprobeproud.org/about-bpbp"
+                            target="_blank">their about page</a>.</p>
+
+                    <hr class="major" />
+
+                    <h2>About The Project</h2>
+                    <!-- About us page of company here -->
+                    <p><strong>Mission:</strong> Be Pro Be Proud is an organization dedicated to assisting students nationwide in finding suitable educational opportunities and future employment. Through sponsorships from local companies, universities, and governments, they facilitate connections between students and potential schools or jobs. One of their key initiatives involves a mobile truck that visits high schools, showcasing various professions to students. At these events, students are encouraged to join the movement by filling out a form online that captures the students interest and aspirations as well as companies or colleges they are interested in. Through the same portal the students' submission is captured, we build a tool for sponsors to login and view the students submissions and contact them with the students permission.. Additionally, we integrated the Twilio Text Message API, enabling marketing messages to be sent to students who have joined the movement.<br>
+                        <br>When the client approached us, their primary concern was scalability. Previously, each state or province that signed up for their own Be Pro Be Proud website would result in an entirely new WordPress application being built. This approach led to inconsistencies and differences in database structures, making it challenging for the client to manage multiple administrators across different states. To address this, we developed a new multi-tenant application for the client.<br><br>
+                        Our solution involved creating a single application and database that could support an unlimited number of state-specific sites. By utilizing different domains that point to the same application, and scoping the data within the application based on state ID, we achieved a unified and scalable platform. This approach empowered the client to rapidly expand and maintain consistency as they onboarded more states for new websites.
+                        </p>
+                    <p><strong>Technologies Used:</strong> Laravel, Tailwind CSS, Google Maps API, Google Geocode API, Multi-tenant application architecture</p>
+                    <p><strong>Links</strong>
+                        <ul style="margin-left: 28px; margin-top: -20px;">
+                            <li style="padding-bottom: 7px;"><a href="https://laravel.com/" target="_blank">Laravel docs</a></li>
+                            <li style="padding-bottom: 7px;"><a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a></li>
+                            <li style="padding-bottom: 7px;"><a href="https://developers.google.com/maps" target="_blank">Google Maps API</a></li>
+                            <li style="padding-bottom: 7px;"><a href="https://developers.google.com/maps/documentation/geocoding/overview" target="_blank">Google Geocode API</a></li>
+                            <li style="padding-bottom: 7px;"><a href="https://en.wikipedia.org/wiki/Multitenancy" target="_blank">Multitenancy</a></li>
+                        </ul>
+                    </p>
+                    <p><strong>Before: </strong><a target="_blank" href="https://web.archive.org/web/20201126132353/https://www.beprobeproud.org/">From the Web Archives</a></p>
+                    <p><strong>After: </strong><a target="_blank" href="https://www.beprobeproud.org/">Visit new live website</a></p>
+
+                    <h2>Summary</h2>
+                    <!-- My testimonial here -->
+                    <p>This project marked a significant milestone for me as it was the first time I undertook the development of a multi-tenant application. Through this architectural approach, a single instance of the application is capable of serving running all their different state websites under one roof instead of starting a new Wordpress build everytime, which then gets out of sync with plugins, content, and frontend themes. Multi-tenancy was a perfect solution for their use case. In fact, for this particular project, we built two separate multi-tenant applications. The first one is the Main Be Pro State Website application, which currently includes the following websites:
+                    </p>
+                    <ul style="margin-left: 28px; margin-top: -20px;">
+                        <li style="padding-bottom: 7px;"><a href="https://www.beprobeproud.org/" target="_blank">Be Pro Be Proud: Main Hub</a></li>
+                        <li style="padding-bottom: 7px;"><a href="http://beprobeproudar.org/" target="_blank">Be Pro Be Proud: Arkansas</a></li>
+                        <li style="padding-bottom: 7px;"><a href="https://www.beprobeproudga.org/" target="_blank">Be Pro Be Proud: Georgia</a></li>
+                        <li style="padding-bottom: 7px;"><a href="https://beprobeproudsc.org/" target="_blank">Be Pro Be Proud: South Carolina</a></li>
+                        <li style="padding-bottom: 7px;"><a href="https://www.beprobeproudtn.org/" target="_blank">Be Pro Be Proud: Tennessee</a></li>
+                        <li style="padding-bottom: 7px;"><a href="https://www.beprobeproudnc.org/" target="_blank">Be Pro Be Proud: North Carolina</a></li>
+                    </ul>
+                    <p>The other multi-tenant application was the Join The Movement application which is where students would fill out their form to be shared with schools and employors:</p>
+                    <ul style="margin-left: 28px; margin-top: -20px;">
+                        <li style="padding-bottom: 7px;"><a href="https://join.beprobeproud.org/" target="_blank">Join The Movement: Main Hub</a></li>
+                        <li style="padding-bottom: 7px;"><a href="http://join.ar.beprobeproud.org/" target="_blank">Join The Movement: Arkansas</a></li>
+                        <li style="padding-bottom: 7px;"><a href="https://join.ga.beprobeproud.org/" target="_blank">Join The Movement: Georgia</a></li>
+                        <li style="padding-bottom: 7px;"><a href="https://join.sc.beprobeproud.org/" target="_blank">Join The Movement: South Carolina</a></li>
+                        <li style="padding-bottom: 7px;"><a href="https://join.tn.beprobeproud.org/" target="_blank">Join The Movement: Tennessee</a></li>
+                        <li style="padding-bottom: 7px;"><a href="https://join.nc.beprobeproud.org/" target="_blank">Join The Movement: North Carolina</a></li>
+                    </ul>
+
+
+                </section>
+            </div>
+        </div>
+
+        <!-- Sidebar & Footer -->
+        <div id="sidebar">
+    <div class="inner">
+
+        <!-- Search -->
+            <!-- <section id="search" class="alt">
+                <form method="post" action="#">
+                    <input type="text" name="query" id="query" placeholder="Search" />
+                </form>
+            </section> -->
+
+        <!-- Menu -->
+            <nav id="menu" class="main-menu-margin" style="border-bottom: none;">
+                <header class="major">
+                    <h2>Menu</h2>
+                </header>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../portfolio.html">My Portfolio</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="images/Colton%20Williams%20-%20Resume%202024.html" target="_blank">My Resume</a></li>
+                    <li><a href="../video-games.html">Play some Video Games I made!</a></li>
+                    <!-- <li><a href="generic.html">Content page</a></li> -->
+                    <!-- <li><a href="elements.html">Elements</a></li> -->
+                    <!-- <li>
+                        <span class="opener">Submenu</span>
+                        <ul>
+                            <li><a href="#">Item 1</a></li>
+                            <li><a href="#">Item 2</a></li>
+                            <li><a href="#">Item 3</a></li>
+                            <li><a href="#">Item 4</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
+            </nav>
+
+        <!-- Section -->
+            <section>
+                <header class="major">
+                    <h2>Get in touch</h2>
+                </header>
+                <p>Free free to shoot me and email or text if you need any work done or would like to just chat! You can also reach out to me by filling out <a href="../contact.html">this form</a>.</p>
+                <ul class="contact">
+                    <li class="icon solid fa-envelope"><a href="mailto:colton@coltons-apps.tech">colton@coltons-apps.tech</a></li>
+                    <li class="icon solid fa-phone"><a href="tel:501-304-4100">(501) 304-4100</a></li>
+                    <!-- <li class="icon solid fa-home">1975 N Highway 171<br />
+                    Malvern, AR 72104</li> -->
+                </ul>
+            </section>
+        <footer id="footer">
+            <p class="copyright">&copy; Rahul kushwaha. All rights reserved.<br> Design: <a target="_blank" href="https://html5up.net/">HTML5 UP</a>. Favicon: <a target="_blank" href="https://icons8.com/">icons8.com</a></p>
+        </footer>
+
+    </div>
+</div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main5e1f.js?v=2"></script>
+<script  type="text/javascript" src="../../unpkg.com/nanogallery2%402.4.2/dist/jquery.nanogallery2.min.js"></script>
+
+<script>
+    function goBack() {
+      window.history.back();
+    }
+</script>
+</body>
+
+
+<!-- Mirrored from coltons-apps.tech/portfolio/be-pro-be-proud.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 30 Jul 2024 17:33:09 GMT -->
+</html>

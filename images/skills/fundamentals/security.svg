@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round">
+  <!-- Shield -->
+  <path d="M 32 6 L 52 14 L 52 26 C 52 36 42 42 32 46 C 22 42 12 36 12 26 L 12 14 Z" fill="none"/>
+  <!-- Lock body -->
+  <rect x="26" y="22" width="12" height="10" rx="1"/>
+  <path d="M 28 22 L 28 18 C 28 14 30 12 32 12 C 34 12 36 14 36 18 L 36 22"/>
+  <circle cx="32" cy="27" r="1.5"/>
+</svg>

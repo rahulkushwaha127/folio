@@ -32,10 +32,13 @@ try {
     }
     
     // Get optional query parameters
-    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 100; // Limit results
-    $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0; // Pagination offset
-    $country = isset($_GET['country']) ? $_GET['country'] : null; // Filter by country
-    $page = isset($_GET['page']) ? $_GET['page'] : null; // Filter by page visited
+    $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 100;
+    $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
+    $country = isset($_GET['country']) ? trim($_GET['country']) : null;
+    $region = isset($_GET['region']) ? trim($_GET['region']) : null;
+    $page = isset($_GET['page']) ? trim($_GET['page']) : null;
+    $date_from = isset($_GET['date_from']) ? trim($_GET['date_from']) : null;
+    $date_to = isset($_GET['date_to']) ? trim($_GET['date_to']) : null;
     
     // Build query
     $query = "SELECT id, ip_address, user_agent, referrer, page_visited, country, region, city, latitude, longitude, timezone, device_type, browser, os, session_id, visit_count, created_at FROM site_visits";
@@ -46,14 +49,27 @@ try {
         $where[] = "country = :country";
         $params[':country'] = $country;
     }
-    
+    if ($region) {
+        $where[] = "region = :region";
+        $params[':region'] = $region;
+    }
     if ($page) {
         $where[] = "page_visited = :page";
         $params[':page'] = $page;
     }
+    if ($date_from) {
+        $where[] = "DATE(created_at) >= :date_from";
+        $params[':date_from'] = $date_from;
+    }
+    if ($date_to) {
+        $where[] = "DATE(created_at) <= :date_to";
+        $params[':date_to'] = $date_to;
+    }
+    
+    $whereClause = !empty($where) ? " WHERE " . implode(" AND ", $where) : "";
     
     if (!empty($where)) {
-        $query .= " WHERE " . implode(" AND ", $where);
+        $query .= $whereClause;
     }
     
     $query .= " ORDER BY created_at DESC LIMIT :limit OFFSET :offset";
@@ -73,10 +89,7 @@ try {
     $visitors = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     // Get total count
-    $count_query = "SELECT COUNT(*) as total FROM site_visits";
-    if (!empty($where)) {
-        $count_query .= " WHERE " . implode(" AND ", $where);
-    }
+    $count_query = "SELECT COUNT(*) as total FROM site_visits" . $whereClause;
     $count_stmt = $conn->prepare($count_query);
     if (!empty($params)) {
         foreach ($params as $key => $value) {
@@ -86,24 +99,50 @@ try {
     $count_stmt->execute();
     $total = $count_stmt->fetch(PDO::FETCH_ASSOC)['total'];
     
-    // Get statistics
+    // Get statistics (with same filters)
     $stats_query = "SELECT 
         COUNT(DISTINCT ip_address) as unique_visitors,
         COUNT(*) as total_visits,
         COUNT(DISTINCT country) as countries,
         COUNT(DISTINCT DATE(created_at)) as days_active
-    FROM site_visits";
-    $stats_stmt = $conn->query($stats_query);
+    FROM site_visits" . $whereClause;
+    $stats_stmt = $conn->prepare($stats_query);
+    if (!empty($params)) {
+        foreach ($params as $key => $value) {
+            if ($key !== ':limit' && $key !== ':offset') {
+                $stats_stmt->bindValue($key, $value);
+            }
+        }
+    }
+    $stats_stmt->execute();
     $stats = $stats_stmt->fetch(PDO::FETCH_ASSOC);
     
-    // Get top countries
-    $top_countries_query = "SELECT country, COUNT(*) as visits FROM site_visits WHERE country IS NOT NULL GROUP BY country ORDER BY visits DESC LIMIT 10";
-    $top_countries_stmt = $conn->query($top_countries_query);
+    // Get top countries (with same filters)
+    $top_countries_query = empty($where)
+        ? "SELECT country, COUNT(*) as visits FROM site_visits WHERE country IS NOT NULL GROUP BY country ORDER BY visits DESC LIMIT 10"
+        : "SELECT country, COUNT(*) as visits FROM site_visits" . $whereClause . " AND country IS NOT NULL GROUP BY country ORDER BY visits DESC LIMIT 10";
+    $top_countries_stmt = $conn->prepare($top_countries_query);
+    if (!empty($params)) {
+        foreach ($params as $key => $value) {
+            if ($key !== ':limit' && $key !== ':offset') {
+                $top_countries_stmt->bindValue($key, $value);
+            }
+        }
+    }
+    $top_countries_stmt->execute();
     $top_countries = $top_countries_stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    // Get top pages
-    $top_pages_query = "SELECT page_visited, COUNT(*) as visits FROM site_visits GROUP BY page_visited ORDER BY visits DESC LIMIT 10";
-    $top_pages_stmt = $conn->query($top_pages_query);
+    // Get top pages (with same filters)
+    $top_pages_query = "SELECT page_visited, COUNT(*) as visits FROM site_visits" . $whereClause . " GROUP BY page_visited ORDER BY visits DESC LIMIT 10";
+    $top_pages_stmt = $conn->prepare($top_pages_query);
+    if (!empty($params)) {
+        foreach ($params as $key => $value) {
+            if ($key !== ':limit' && $key !== ':offset') {
+                $top_pages_stmt->bindValue($key, $value);
+            }
+        }
+    }
+    $top_pages_stmt->execute();
     $top_pages = $top_pages_stmt->fetchAll(PDO::FETCH_ASSOC);
     
     // Return JSON response

@@ -8,7 +8,7 @@ import {
   RefreshControl,
 } from 'react-native';
 
-const DataList = ({ data, dataType, onItemSelect, onRefresh }) => {
+const DataList = ({ data, dataType, onItemSelect, onRefresh, refreshing = false }) => {
   const renderContactItem = ({ item }) => (
     <TouchableOpacity
       style={styles.item}
@@ -98,7 +98,7 @@ const DataList = ({ data, dataType, onItemSelect, onRefresh }) => {
       keyExtractor={(item) => item.id.toString()}
       contentContainerStyle={styles.listContainer}
       refreshControl={
-        <RefreshControl refreshing={false} onRefresh={onRefresh} />
+        onRefresh ? <RefreshControl refreshing={refreshing} onRefresh={onRefresh} /> : undefined
       }
       ListEmptyComponent={
         <View style={styles.emptyContainer}>

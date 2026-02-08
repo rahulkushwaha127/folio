@@ -10,16 +10,17 @@
                     <div class="content">
                         <header>
                             <h1>Hi, I'm Rahul Kushwaha</h1>
-                            <p>Software Developer</p>
+                            <p class="hero-role">Full‑stack developer</p>
                         </header>
-                        <p>Hello world!</p>
-                        <p>This site is a showcase of a few websites, projects, and software tools I've built and/or worked on with development teams in the industry, and ways to contact me if you ever need help with anything.</p>
+                        <p class="hero-tagline">I build web &amp; mobile apps with Laravel, Vue, React &amp; PHP.</p>
+                        <p>This site showcases projects I've built and worked on with teams, and how to get in touch if you need help with yours.</p>
                         <ul class="actions">
-                            <li><a href="/portfolio" class="button big">Check out my projects!</a></li>
+                            <li><a href="/portfolio" class="button big">Check out my projects</a></li>
+                            <li><a href="/services" class="button big alt">View services</a></li>
                         </ul>
                     </div>
-                    <span class="image object">
-                        <img src="me.png" alt="" />
+                    <span class="image object hero-image">
+                        <img src="me.png" alt="Rahul Kushwaha" />
                     </span>
                 </section>
             </div>

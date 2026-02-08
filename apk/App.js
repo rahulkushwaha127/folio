@@ -7,32 +7,31 @@ import {
   SafeAreaView,
   StatusBar,
   ActivityIndicator,
-  Modal,
 } from 'react-native';
 import DataList from './components/DataList';
 import DetailsModal from './components/DetailsModal';
-import { fetchContacts, fetchVisits } from './services/api';
+import Dashboard from './components/Dashboard';
+import VisitsScreen from './components/VisitsScreen';
+import { fetchContacts } from './services/api';
 
 export default function App() {
-  const [dataType, setDataType] = useState('contacts'); // 'contacts' or 'visits'
-  const [data, setData] = useState([]);
+  const [screen, setScreen] = useState('dashboard'); // 'dashboard' | 'contacts' | 'visits'
+  const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    loadData();
-  }, [dataType]);
+    if (screen === 'contacts') loadContacts();
+  }, [screen]);
 
-  const loadData = async () => {
+  const loadContacts = async () => {
     try {
       setLoading(true);
-      const result = dataType === 'contacts' 
-        ? await fetchContacts() 
-        : await fetchVisits();
-      setData(result);
+      const result = await fetchContacts();
+      setContacts(result);
     } catch (error) {
-      console.error(`Error loading ${dataType}:`, error);
+      console.error('Error loading contacts:', error);
     } finally {
       setLoading(false);
     }
@@ -48,8 +47,8 @@ export default function App() {
     setSelectedItem(null);
   };
 
-  const handleDataTypeChange = (type) => {
-    setDataType(type);
+  const handleScreenChange = (s) => {
+    setScreen(s);
     setSelectedItem(null);
     setModalVisible(false);
   };
@@ -58,47 +57,60 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
       
-      {/* Toggle Buttons */}
+      {/* Tab Navigation */}
       <View style={styles.header}>
         <TouchableOpacity
-          style={[styles.toggleButton, dataType === 'contacts' && styles.activeButton]}
-          onPress={() => handleDataTypeChange('contacts')}
+          style={[styles.tabButton, screen === 'dashboard' && styles.activeTab]}
+          onPress={() => handleScreenChange('dashboard')}
         >
-          <Text style={[styles.buttonText, dataType === 'contacts' && styles.activeButtonText]}>
+          <Text style={[styles.tabText, screen === 'dashboard' && styles.activeTabText]}>
+            Dashboard
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.tabButton, screen === 'contacts' && styles.activeTab]}
+          onPress={() => handleScreenChange('contacts')}
+        >
+          <Text style={[styles.tabText, screen === 'contacts' && styles.activeTabText]}>
             Contacts
           </Text>
         </TouchableOpacity>
-        
         <TouchableOpacity
-          style={[styles.toggleButton, dataType === 'visits' && styles.activeButton]}
-          onPress={() => handleDataTypeChange('visits')}
+          style={[styles.tabButton, screen === 'visits' && styles.activeTab]}
+          onPress={() => handleScreenChange('visits')}
         >
-          <Text style={[styles.buttonText, dataType === 'visits' && styles.activeButtonText]}>
+          <Text style={[styles.tabText, screen === 'visits' && styles.activeTabText]}>
             Visits
           </Text>
         </TouchableOpacity>
       </View>
 
-      {/* Content Area */}
-      {loading ? (
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#4A90E2" />
-          <Text style={styles.loadingText}>Loading {dataType}...</Text>
-        </View>
-      ) : (
-        <DataList
-          data={data}
-          dataType={dataType}
-          onItemSelect={handleItemSelect}
-          onRefresh={loadData}
-        />
+      {/* Content */}
+      {screen === 'dashboard' && (
+        <Dashboard onRefresh={() => {}} />
       )}
+      {screen === 'contacts' && (
+        loading ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color="#4A90E2" />
+            <Text style={styles.loadingText}>Loading contacts...</Text>
+          </View>
+        ) : (
+          <DataList
+            data={contacts}
+            dataType="contacts"
+            onItemSelect={handleItemSelect}
+            onRefresh={loadContacts}
+          />
+        )
+      )}
+      {screen === 'visits' && <VisitsScreen />}
 
-      {/* Details Modal */}
+      {/* Details Modal (contacts only) */}
       <DetailsModal
         visible={modalVisible}
         item={selectedItem}
-        dataType={dataType}
+        dataType="contacts"
         onClose={handleCloseModal}
       />
     </SafeAreaView>
@@ -113,8 +125,8 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     backgroundColor: '#fff',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
     elevation: 2,
@@ -123,25 +135,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
-  toggleButton: {
+  tabButton: {
     flex: 1,
     paddingVertical: 10,
-    paddingHorizontal: 16,
-    marginHorizontal: 4,
+    paddingHorizontal: 8,
+    marginHorizontal: 2,
     borderRadius: 8,
     backgroundColor: '#f0f0f0',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  activeButton: {
+  activeTab: {
     backgroundColor: '#4A90E2',
   },
-  buttonText: {
-    fontSize: 16,
+  tabText: {
+    fontSize: 13,
     fontWeight: '600',
     color: '#666',
   },
-  activeButtonText: {
+  activeTabText: {
     color: '#fff',
   },
   loadingContainer: {

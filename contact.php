@@ -35,7 +35,7 @@
                             <div class="col-12">
                                 <textarea name="Message" id="demo-message" placeholder="Enter your message" rows="6" required></textarea>
                             </div>
-                            <div class="g-recaptcha" data-sitekey="6LdWem8pAAAAAF9G97nfRRuvBIcXZJFTM13j_LQ7"></div>
+                            <div class="g-recaptcha" data-sitekey="6Lc7uGQsAAAAABDWnqqgamFgKJqV7zkIXMTkAiMa"></div>
                             <div class="col-12">
                                 <ul class="actions">
                                     <li><input type="submit" value="Send Message" class="primary" /></li>

@@ -9,8 +9,8 @@ define('DB_PASS', 'jksdhfk54sf');
 define('CONTACT_EMAIL', 'rahulkushwaha14949@gmail.com');
 
 // reCAPTCHA Configuration (if you want to enable it)
-define('RECAPTCHA_SECRET_KEY', 'YOUR_RECAPTCHA_SECRET_KEY'); // Add your secret key here
-define('RECAPTCHA_SITE_KEY', '6LdWem8pAAAAAF9G97nfRRuvBIcXZJFTM13j_LQ7');
+define('RECAPTCHA_SECRET_KEY', '6Lc7uGQsAAAAAH0Rao7f321MqxqT9_Ujuow3o_U-'); // Add your secret key here
+define('RECAPTCHA_SITE_KEY', '6Lc7uGQsAAAAABDWnqqgamFgKJqV7zkIXMTkAiMa');
 
 // Database Connection Function
 function getDBConnection() {

@@ -79,6 +79,9 @@ const DataList = ({ data, dataType, onItemSelect, onRefresh }) => {
             {item.city && (
               <Text style={styles.locationText}>🏙️ {item.city}</Text>
             )}
+            {item.ip_address && (
+              <Text style={styles.locationText}>🌐 {item.ip_address}</Text>
+            )}
           </View>
           <Text style={styles.dateText}>
             {new Date(item.created_at).toLocaleDateString()}

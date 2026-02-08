@@ -7,9 +7,10 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/portfolio">My Portfolio</a></li>
+                <li><a href="/services">My Services</a></li>
                 <li><a href="/skills">My Skills</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="https://rahulkushwaha.net/Rahul_Kushwaha_Laravel_vue.pdf" target="_blank">My Resume</a></li>
+                <!-- <li><a href="https://rahulkushwaha.net/Rahul_Kushwaha_Laravel_vue.pdf" target="_blank">My Resume</a></li> -->
             </ul>
         </nav>
         <section>

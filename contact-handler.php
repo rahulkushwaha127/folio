@@ -34,14 +34,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Message is required";
     }
     
-    // Verify reCAPTCHA (optional - uncomment if you want to enable it)
-    // if (!empty($recaptcha_response)) {
-    //     $recaptcha_verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=" . RECAPTCHA_SECRET_KEY . "&response={$recaptcha_response}");
-    //     $recaptcha_data = json_decode($recaptcha_verify);
-    //     if (!$recaptcha_data->success) {
-    //         $errors[] = "reCAPTCHA verification failed";
-    //     }
-    // }
+    // Verify reCAPTCHA v3
+    if (empty($recaptcha_response)) {
+        $errors[] = "Security verification failed. Please try again.";
+    } else {
+        $recaptcha_verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=" . RECAPTCHA_SECRET_KEY . "&response=" . urlencode($recaptcha_response));
+        $recaptcha_data = json_decode($recaptcha_verify);
+        if (!$recaptcha_data || !$recaptcha_data->success) {
+            $errors[] = "Security verification failed. Please try again.";
+        } elseif (isset($recaptcha_data->score) && $recaptcha_data->score < 0.5) {
+            // v3 returns a score 0.0-1.0; reject likely bots
+            $errors[] = "Security verification failed. Please try again.";
+        }
+    }
     
     // If no errors, save to database and send email
     if (empty($errors)) {

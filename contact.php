@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+<?php require_once __DIR__ . '/config.php'; ?>
 <?php @include('partials/head.php') ?>
 <body class="is-preload">
     <div id="wrapper">
@@ -45,16 +46,29 @@
                                     <label for="demo-message" class="form-label">Message</label>
                                     <textarea name="Message" id="demo-message" placeholder="Tell me about your project or question…" rows="6" required></textarea>
                                 </div>
-                                <div class="col-12">
-                                    <div class="g-recaptcha" data-sitekey="6Lc7uGQsAAAAABDWnqqgamFgKJqV7zkIXMTkAiMa"></div>
-                                </div>
+                                <input type="hidden" name="g-recaptcha-response" id="recaptcha-token" value="" />
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Send Message" class="primary" /></li>
+                                        <li><input type="submit" value="Send Message" class="primary" id="contact-submit" /></li>
                                     </ul>
                                 </div>
                             </div>
                         </form>
+                        <script src="https://www.google.com/recaptcha/api.js?render=<?php echo htmlspecialchars(RECAPTCHA_SITE_KEY); ?>"></script>
+                        <script>
+                        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            var form = this;
+                            var submitBtn = document.getElementById('contact-submit');
+                            if (submitBtn) submitBtn.disabled = true;
+                            grecaptcha.ready(function() {
+                                grecaptcha.execute('<?php echo addslashes(RECAPTCHA_SITE_KEY); ?>', { action: 'contact' }).then(function(token) {
+                                    document.getElementById('recaptcha-token').value = token;
+                                    form.submit();
+                                });
+                            });
+                        });
+                        </script>
                     </div>
                 </section>
             </div>
